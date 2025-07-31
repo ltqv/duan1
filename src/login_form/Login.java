@@ -103,7 +103,7 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 430, 380));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Fpoly\\DuAn1\\Glass Effect Login Page (Community) (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/Glass Effect Login Page (Community) (1).png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 600));
 

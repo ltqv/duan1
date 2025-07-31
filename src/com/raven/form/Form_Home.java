@@ -51,8 +51,6 @@ public class Form_Home extends javax.swing.JPanel {
         spTable = new javax.swing.JScrollPane();
         table = new com.raven.swing.Table();
 
-        setBackground(new java.awt.Color(242, 242, 242));
-
         panel.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
         card1.setColor1(new java.awt.Color(142, 142, 250));
@@ -71,7 +69,7 @@ public class Form_Home extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(127, 127, 127));
-        jLabel1.setText("Standard Table Design");
+        jLabel1.setText("Thông tin tổng quát");
 
         spTable.setBorder(null);
 
