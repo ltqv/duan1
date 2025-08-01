@@ -1,6 +1,7 @@
 package com.raven.entity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class User {
     private String id;
@@ -10,7 +11,7 @@ public class User {
     private String so_dien_thoai;
     private String email;
     private String vai_tro;
-    private java.sql.Timestamp ngay_tao;
+    private Date ngay_tao;
 
     public User() {
     }
@@ -82,12 +83,11 @@ public class User {
         this.vai_tro = vai_tro;
     }
 
-    public Timestamp getNgay_tao() {
+    public Date getNgay_tao() {
         return ngay_tao;
     }
 
-    public void setNgay_tao(Timestamp ngay_tao) {
+    public void setNgay_tao(Date ngay_tao) {
         this.ngay_tao = ngay_tao;
     }    
-    
 }
