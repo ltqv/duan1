@@ -1,14 +1,20 @@
 package com.raven.form;
 
+import com.raven.Controller.Form_HomeController;
+import com.raven.DAO.UserDAO;
+import com.raven.DAOImpl.UserDAOImpl;
+import com.raven.entity.User;
 import com.raven.model.Model_Card;
-import com.raven.model.StatusType;
-import com.raven.swing.ScrollBar;
-import java.awt.Color;
+import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableModel;
 
-public class Form_Home extends javax.swing.JPanel {
+public class Form_Home extends javax.swing.JPanel implements Form_HomeController{
+
+    UserDAO userDAO = new UserDAOImpl();
+    List<User> user = List.of();
 
     public Form_Home() {
         initComponents();
@@ -16,27 +22,135 @@ public class Form_Home extends javax.swing.JPanel {
         card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/sdt.png")), "Số lượng học sinh", "30", ""));
         card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/door.png")), "Số phòng học hiện trống", "0", ""));
         //  add row table
-        spTable.setVerticalScrollBar(new ScrollBar());
-        spTable.getVerticalScrollBar().setBackground(Color.WHITE);
-        spTable.getViewport().setBackground(Color.WHITE);
-        JPanel p = new JPanel();
-        p.setBackground(Color.WHITE);
-        spTable.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
-        table.addRow(new Object[]{"Mike Bhand", "mikebhand@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
-        table.addRow(new Object[]{"Andrew Strauss", "andrewstrauss@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
-        table.addRow(new Object[]{"Ross Kopelman", "rosskopelman@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
-        table.addRow(new Object[]{"Mike Hussy", "mikehussy@gmail.com", "Admin", "25 Apr,2018", StatusType.REJECT});
-        table.addRow(new Object[]{"Kevin Pietersen", "kevinpietersen@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
-        table.addRow(new Object[]{"Andrew Strauss", "andrewstrauss@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
-        table.addRow(new Object[]{"Ross Kopelman", "rosskopelman@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
-        table.addRow(new Object[]{"Mike Hussy", "mikehussy@gmail.com", "Admin", "25 Apr,2018", StatusType.REJECT});
-        table.addRow(new Object[]{"Kevin Pietersen", "kevinpietersen@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
-        table.addRow(new Object[]{"Kevin Pietersen", "kevinpietersen@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
-        table.addRow(new Object[]{"Andrew Strauss", "andrewstrauss@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
-        table.addRow(new Object[]{"Ross Kopelman", "rosskopelman@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
-        table.addRow(new Object[]{"Mike Hussy", "mikehussy@gmail.com", "Admin", "25 Apr,2018", StatusType.REJECT});
-        table.addRow(new Object[]{"Kevin Pietersen", "kevinpietersen@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
+        this.addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                open(); // Gọi khi panel được thêm vào giao diện
+            }
+            
+            @Override
+            public void ancestorRemoved(AncestorEvent event) {}
+
+            @Override
+            public void ancestorMoved(AncestorEvent event) {}
+        });
     }
+    
+    @Override 
+    public void open() { 
+        this.fillToTable(); 
+        this.clear(); 
+    } 
+
+    @Override 
+    public void fillToTable() { 
+        DefaultTableModel model = (DefaultTableModel) table.getModel(); 
+        model.setRowCount(0); 
+
+        user = userDAO.findAll(); 
+        user.forEach(item -> { 
+            Object[] rowData = { 
+                item.getHo_ten(),
+                item.getEmail(),
+                item.getSo_dien_thoai(),
+                item.getVai_tro(),
+                item.getNgay_tao(),
+                item.getVai_tro()
+            }; 
+            model.addRow(rowData); 
+        }); 
+    } 
+
+    @Override 
+    public void edit() { 
+        User entity = user.get(table.getSelectedRow()); 
+        this.setForm(entity); 
+        this.setEditable(true); 
+    } 
+
+    @Override 
+    public void checkAll() { 
+        this.setCheckedAll(true); 
+    } 
+
+    @Override 
+    public void uncheckAll() { 
+        this.setCheckedAll(false); 
+    } 
+    private void setCheckedAll(boolean checked) { 
+       
+    } 
+
+    @Override 
+    public void deleteCheckedItems() { 
+       
+    } 
+
+    @Override 
+    public void setForm(User entity) { 
+        
+    } 
+
+    @Override 
+    public User getForm() { 
+        User user = new User();
+        return user;
+    } 
+
+
+
+    @Override 
+    public void create() { 
+        
+    } 
+
+    @Override 
+    public void update() { 
+        
+    } 
+
+    @Override 
+    public void delete() { 
+         
+    } 
+
+    @Override 
+    public void clear() { 
+        this.setForm(new User()); 
+        this.setEditable(false); 
+    } 
+
+    @Override 
+    public void setEditable(boolean editable) { 
+        
+    } 
+
+
+
+    @Override 
+    public void moveFirst() { 
+        this.moveTo(0); 
+    } 
+
+    @Override 
+    public void movePrevious() { 
+        
+    } 
+
+    @Override 
+    public void moveNext() { 
+        
+    } 
+
+    @Override 
+    public void moveLast() { 
+        
+    } 
+
+    @Override 
+    public void moveTo(int index) { 
+        
+    } 
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -78,11 +192,11 @@ public class Form_Home extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Email", "User Type", "Joined", "Status"
+                "Họ tên", "Email", "Số điện thoại", "Vai trò", "Ngày tạo", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

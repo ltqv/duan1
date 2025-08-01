@@ -21,8 +21,11 @@ public class TableStatus extends JLabel {
     private StatusType type;
 
     public void setType(StatusType type) {
-        this.type = type;
-        setText(type.toString());
+        if (type != null) {
+            setText(type.toString());
+        } else {
+            setText("Không xác định"); // hoặc ""
+        }
         repaint();
     }
 
