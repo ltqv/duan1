@@ -1,18 +1,58 @@
 package login_form;
 
+import com.raven.Controller.LoginController;
+import com.raven.DAO.UserDAO;
+import com.raven.DAOImpl.UserDAOImpl;
+import com.raven.entity.User;
+import com.raven.util.XAuth;
+import com.raven.util.XDialog;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame implements LoginController {
 
     public Login() {
         initComponents();
-        
+
         setLocationRelativeTo(null);
-        
+
         JCheckBox chkRemember = new JCheckBox("Remember me");
-      
+
         chkRemember.setForeground(new Color(242, 242, 242, 80));
+    }
+
+    @Override
+    public void open() {
+        this.setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void login() {
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+
+        UserDAO dao = new UserDAOImpl();
+        User user = dao.findById(username);
+        if (username.isEmpty()) {
+            XDialog.alert("Chưa nhập tên!");
+        } else if (password.isEmpty()) {
+            XDialog.alert("Chưa nhập mật khẩu!");
+        } else if (user == null) {
+            XDialog.alert("Sai tên đăng nhập!");
+        } else if (!password.equals(user.getMat_khau())) {
+            XDialog.alert("Sai mật khẩu đăng nhập!");
+        } else {
+            XAuth.user = user; // Lưu thông tin người dùng đã đăng nhập
+            // Kiểm tra vai trò
+            if ("QUAN_TRI".equalsIgnoreCase(user.getVai_tro())) {
+                XDialog.alert("Đăng nhập thành công (Quản trị viên)");
+            } else if("GIAO_VIEN".equalsIgnoreCase(user.getVai_tro())){
+                XDialog.alert("Đăng nhập thành công (Nhân viên / Giảng viên)");
+            } else if("HOC_VIEN".equalsIgnoreCase(user.getVai_tro())){
+                XDialog.alert("Đăng nhập thành công (Nhân viên / Giảng viên)");
+            }
+            this.dispose();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -23,9 +63,9 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
@@ -53,6 +93,11 @@ public class Login extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setBackground(new java.awt.Color(0, 102, 204));
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,8 +117,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(177, 177, 177)
                         .addComponent(jLabel3))
@@ -92,11 +137,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -113,6 +158,11 @@ public class Login extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1086, 609));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        login();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -131,7 +181,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
