@@ -2,18 +2,18 @@ package com.raven.entity;
 
 public class StudentInClass {
     private int id;
-    private String idLop;
-    private String idHocVien;
-    private String trangThai;
+    private String id_lop;
+    private String id_hoc_vien;
+    private String trang_thai;
 
     public StudentInClass() {
     }
 
-    public StudentInClass(int id, String idLop, String idHocVien, String trangThai) {
+    public StudentInClass(int id, String id_lop, String id_hoc_vien, String trang_thai) {
         this.id = id;
-        this.idLop = idLop;
-        this.idHocVien = idHocVien;
-        this.trangThai = trangThai;
+        this.id_lop = id_lop;
+        this.id_hoc_vien = id_hoc_vien;
+        this.trang_thai = trang_thai;
     }
 
     public int getId() {
@@ -24,29 +24,29 @@ public class StudentInClass {
         this.id = id;
     }
 
-    public String getIdLop() {
-        return idLop;
+    public String getId_lop() {
+        return id_lop;
     }
 
-    public void setIdLop(String idLop) {
-        this.idLop = idLop;
+    public void setId_lop(String id_lop) {
+        this.id_lop = id_lop;
     }
 
-    public String getIdHocVien() {
-        return idHocVien;
+    public String getId_hoc_vien() {
+        return id_hoc_vien;
     }
 
-    public void setIdHocVien(String idHocVien) {
-        this.idHocVien = idHocVien;
+    public void setId_hoc_vien(String id_hoc_vien) {
+        this.id_hoc_vien = id_hoc_vien;
     }
 
-    public String getTrangThai() {
-        return trangThai;
+    public String getTrang_thai() {
+        return trang_thai;
     }
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
+    public void setTrang_thai(String trang_thai) {
+        this.trang_thai = trang_thai;
     }
-    
+
     
 }

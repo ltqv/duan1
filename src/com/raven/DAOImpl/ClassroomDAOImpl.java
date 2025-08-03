@@ -7,8 +7,8 @@ import com.raven.util.XQuery;
 import com.raven.DAO.ClassroomDAO;
 
 public class ClassroomDAOImpl implements ClassroomDAO{
-    String createSql = "INSERT INTO LopHoc(id, id_khoa_hoc, hocky, tong_buoi, id_giang_vien, ngay_bat_dau, ngay_ket_thuc) VALUES(?, ?, ?, ?, ?, ?, ?)"; 
-    String updateSql = "UPDATE LopHoc SET id_khoa_hoc=?, hocky=?, tong_buoi=?, id_giang_vien=?, ngay_bat_dau=?, ngay_ket_thuc=? WHERE id=?"; 
+    String createSql = "INSERT INTO LopHoc(id, id_khoa_hoc, hoc_ky, tong_buoi, id_giang_vien, ngay_bat_dau, ngay_ket_thuc) VALUES(?, ?, ?, ?, ?, ?, ?)"; 
+    String updateSql = "UPDATE LopHoc SET id_khoa_hoc=?, hoc_ky=?, tong_buoi=?, id_giang_vien=?, ngay_bat_dau=?, ngay_ket_thuc=? WHERE id=?"; 
     String deleteSql = "DELETE FROM LopHoc WHERE id=?"; 
     String findAllSql = "SELECT * FROM LopHoc"; 
     String findByIdSql = "SELECT * FROM LopHoc WHERE id=?"; 

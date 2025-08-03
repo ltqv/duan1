@@ -16,8 +16,8 @@ public class ViewedSubmissionDAOImpl implements ViewedSubmissionDAO{
     @Override 
     public ViewedSubmission create(ViewedSubmission entity) { 
         Object[] values = { 
-            entity.getIdBaiLam(),
-            entity.getIdHocVien()
+            entity.getId_bailam(),
+            entity.getId_hocvien()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -25,8 +25,8 @@ public class ViewedSubmissionDAOImpl implements ViewedSubmissionDAO{
     @Override 
     public void update(ViewedSubmission entity) { 
         Object[] values = {  
-            entity.getIdBaiLam(),
-            entity.getIdHocVien(),
+            entity.getId_bailam(),
+            entity.getId_hocvien(),
             entity.getId()
         }; 
         XJdbc.executeUpdate(updateSql, values); 

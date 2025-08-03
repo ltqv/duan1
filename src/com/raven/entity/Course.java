@@ -1,19 +1,19 @@
 package com.raven.entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Course {
     private String id;
-    private String tenKhoaHoc;
-    private java.sql.Timestamp ngayTao;
+    private String ten_khoa_hoc;
+    private Date ngay_tao;
 
     public Course() {
     }
 
-    public Course(String id, String tenKhoaHoc, Timestamp ngayTao) {
+    public Course(String id, String ten_khoa_hoc, Date ngay_tao) {
         this.id = id;
-        this.tenKhoaHoc = tenKhoaHoc;
-        this.ngayTao = ngayTao;
+        this.ten_khoa_hoc = ten_khoa_hoc;
+        this.ngay_tao = ngay_tao;
     }
 
     public String getId() {
@@ -24,21 +24,20 @@ public class Course {
         this.id = id;
     }
 
-    public String getTenKhoaHoc() {
-        return tenKhoaHoc;
+    public String getTen_khoa_hoc() {
+        return ten_khoa_hoc;
     }
 
-    public void setTenKhoaHoc(String tenKhoaHoc) {
-        this.tenKhoaHoc = tenKhoaHoc;
+    public void setTen_khoa_hoc(String ten_khoa_hoc) {
+        this.ten_khoa_hoc = ten_khoa_hoc;
     }
 
-    public Timestamp getNgayTao() {
-        return ngayTao;
+    public Date getNgay_tao() {
+        return ngay_tao;
     }
 
-    public void setNgayTao(Timestamp ngayTao) {
-        this.ngayTao = ngayTao;
+    public void setNgay_tao(Date ngay_tao) {
+        this.ngay_tao = ngay_tao;
     }
 
-    
 }

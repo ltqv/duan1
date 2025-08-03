@@ -32,7 +32,7 @@ public class Form_1 extends javax.swing.JPanel implements Form_1Controller {
             public void ancestorMoved(AncestorEvent event) {
             }
         });
-
+        txtngayTao.setEditable(false);
     }
 
     @Override

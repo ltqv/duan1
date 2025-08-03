@@ -17,11 +17,11 @@ public class ScheduleDAOImpl implements ScheduleDAO{
     public Schedule create(Schedule entity) { 
         Object[] values = { 
             entity.getId(), 
-            entity.getIdLop(),
-            entity.getThuTrongTuan(),
-            entity.getGioBatDau(),
-            entity.getGioKetThuc(),
-            entity.getPhongHoc()
+            entity.getId_lop(),
+            entity.getThu_trong_tuan(),
+            entity.getGio_bat_dau(),
+            entity.getGio_ket_thuc(),
+            entity.getPhong_hoc()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -29,11 +29,11 @@ public class ScheduleDAOImpl implements ScheduleDAO{
     @Override 
     public void update(Schedule entity) { 
         Object[] values = {  
-            entity.getIdLop(),
-            entity.getThuTrongTuan(),
-            entity.getGioBatDau(),
-            entity.getGioKetThuc(),
-            entity.getPhongHoc(),
+            entity.getId_lop(),
+            entity.getThu_trong_tuan(),
+            entity.getGio_bat_dau(),
+            entity.getGio_ket_thuc(),
+            entity.getPhong_hoc(),
             entity.getId()
         }; 
         XJdbc.executeUpdate(updateSql, values); 

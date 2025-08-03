@@ -12,7 +12,7 @@ public class XAuth {
     public static boolean isLogin() {
         return user != null;
     }
-
+    
     public static boolean isAdmin() {
         return isLogin() && "QUAN_TRI".equalsIgnoreCase(user.getVai_tro());
     }

@@ -17,13 +17,13 @@ public class ExamDAOImpl implements ExamDAO{
     public Exam create(Exam entity) { 
         Object[] values = { 
             entity.getId(), 
-            entity.getTieuDe(),
-            entity.getNgayTao(),
-            entity.getThoiLuong(),
-            entity.getTongSoCau(),
-            entity.getThoiGianBatDau(),
-            entity.getThoiGianKetThuc(),
-            entity.isKichHoat()
+            entity.getTieu_de(),
+            entity.getNgay_tao(),
+            entity.getThoi_luong(),
+            entity.getTong_so_cau(),
+            entity.getThoi_gian_bat_dau(),
+            entity.getThoi_gian_ket_thuc(),
+            entity.isKich_hoat()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -31,13 +31,13 @@ public class ExamDAOImpl implements ExamDAO{
     @Override 
     public void update(Exam entity) { 
         Object[] values = {  
-            entity.getTieuDe(),
-            entity.getNgayTao(),
-            entity.getThoiLuong(),
-            entity.getTongSoCau(),
-            entity.getThoiGianBatDau(),
-            entity.getThoiGianKetThuc(),
-            entity.isKichHoat(),
+            entity.getTieu_de(),
+            entity.getNgay_tao(),
+            entity.getThoi_luong(),
+            entity.getTong_so_cau(),
+            entity.getThoi_gian_bat_dau(),
+            entity.getThoi_gian_ket_thuc(),
+            entity.isKich_hoat(),
             entity.getId()
         }; 
         XJdbc.executeUpdate(updateSql, values); 

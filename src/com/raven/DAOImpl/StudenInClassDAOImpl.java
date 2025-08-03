@@ -16,9 +16,9 @@ public class StudenInClassDAOImpl implements StudentInClassDAO{
     @Override 
     public StudentInClass create(StudentInClass entity) { 
         Object[] values = { 
-            entity.getIdLop(),
-            entity.getIdHocVien(),
-            entity.getTrangThai()
+            entity.getId_lop(),
+            entity.getId_hoc_vien(),
+            entity.getTrang_thai()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -26,10 +26,9 @@ public class StudenInClassDAOImpl implements StudentInClassDAO{
     @Override 
     public void update(StudentInClass entity) { 
         Object[] values = {  
-            entity.getIdLop(),
-            entity.getIdHocVien(),
-            entity.getTrangThai(),
-            entity.getId()
+            entity.getId_lop(),
+            entity.getId_hoc_vien(),
+            entity.getTrang_thai()
         }; 
         XJdbc.executeUpdate(updateSql, values); 
     } 

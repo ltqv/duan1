@@ -4,14 +4,15 @@ import com.raven.Controller.LoginController;
 import com.raven.DAO.UserDAO;
 import com.raven.DAOImpl.UserDAOImpl;
 import com.raven.entity.User;
+import com.raven.main.Main;
 import com.raven.util.XAuth;
 import com.raven.util.XDialog;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 
-public class Login extends javax.swing.JFrame implements LoginController {
+public class Logins extends javax.swing.JFrame implements LoginController {
 
-    public Login() {
+    public Logins() {
         initComponents();
 
         setLocationRelativeTo(null);
@@ -19,6 +20,23 @@ public class Login extends javax.swing.JFrame implements LoginController {
         JCheckBox chkRemember = new JCheckBox("Remember me");
 
         chkRemember.setForeground(new Color(242, 242, 242, 80));
+        
+        autoLoginIfRemembered(); 
+    }
+    
+    private void autoLoginIfRemembered() {
+        String[] data = Security.load();
+        if (data != null) {
+            String username = data[0];
+            String password = data[1];
+
+            User user = new UserDAOImpl().findByUsername(username);
+            if (user != null && password.equals(user.getMat_khau())) {
+                XAuth.user = user;
+                openMainForRole();      
+                this.dispose();// vào thẳng hệ thống
+            }
+        }
     }
 
     @Override
@@ -28,32 +46,42 @@ public class Login extends javax.swing.JFrame implements LoginController {
 
     @Override
     public void login() {
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText().trim();
 
         UserDAO dao = new UserDAOImpl();
-        User user = dao.findById(username);
-        if (username.isEmpty()) {
-            XDialog.alert("Chưa nhập tên!");
-        } else if (password.isEmpty()) {
-            XDialog.alert("Chưa nhập mật khẩu!");
-        } else if (user == null) {
-            XDialog.alert("Sai tên đăng nhập!");
-        } else if (!password.equals(user.getMat_khau())) {
-            XDialog.alert("Sai mật khẩu đăng nhập!");
-        } else {
-            XAuth.user = user; // Lưu thông tin người dùng đã đăng nhập
-            // Kiểm tra vai trò
-            if ("QUAN_TRI".equalsIgnoreCase(user.getVai_tro())) {
-                XDialog.alert("Đăng nhập thành công (Quản trị viên)");
-            } else if("GIAO_VIEN".equalsIgnoreCase(user.getVai_tro())){
-                XDialog.alert("Đăng nhập thành công (Nhân viên / Giảng viên)");
-            } else if("HOC_VIEN".equalsIgnoreCase(user.getVai_tro())){
-                XDialog.alert("Đăng nhập thành công (Nhân viên / Giảng viên)");
+        User user = dao.findByUsername(username);
+
+        // kiểm tra rỗng, user == null, sai mật khẩu … (như bạn đã làm)
+
+        if (user != null && password.equals(user.getMat_khau())) {
+            XAuth.user = user;
+
+            // 👉 nếu tick Remember thì lưu, ngược lại xoá
+            if (chkRemember.isSelected()) {
+                Security.save(username, password);
+            } else {
+                Security.clear();
             }
-            this.dispose();
+
+            openMainForRole();
         }
     }
+
+    private void openMainForRole() {
+        if (XAuth.isAdmin()) {
+            XDialog.alert("Đăng nhập thành công (Admin)");
+            Main.main(new String[]{});
+        } else if (XAuth.isGiangVien()) {
+            XDialog.alert("Đăng nhập thành công (Giảng viên)");
+
+        } else {
+            XDialog.alert("Đăng nhập thành công (Học viên)");
+
+        }
+        dispose();
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -64,9 +92,9 @@ public class Login extends javax.swing.JFrame implements LoginController {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chkRemember = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,21 +116,26 @@ public class Login extends javax.swing.JFrame implements LoginController {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Password:");
 
-        jButton1.setBackground(new java.awt.Color(49, 93, 184));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(49, 93, 184));
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Login");
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setBackground(new java.awt.Color(0, 102, 204));
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Remember me");
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        chkRemember.setBackground(new java.awt.Color(0, 102, 204));
+        chkRemember.setForeground(new java.awt.Color(255, 255, 255));
+        chkRemember.setText("Remember me");
+        chkRemember.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        chkRemember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkRememberActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,9 +157,9 @@ public class Login extends javax.swing.JFrame implements LoginController {
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jCheckBox1)
+                        .addComponent(chkRemember)
                         .addGap(43, 43, 43)
-                        .addComponent(jButton1)))
+                        .addComponent(btnLogin)))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,8 +177,8 @@ public class Login extends javax.swing.JFrame implements LoginController {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jCheckBox1))
+                    .addComponent(btnLogin)
+                    .addComponent(chkRemember))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
 
@@ -159,23 +192,28 @@ public class Login extends javax.swing.JFrame implements LoginController {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         login();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void chkRememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkRememberActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_chkRememberActionPerformed
 
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Logins().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JCheckBox chkRemember;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

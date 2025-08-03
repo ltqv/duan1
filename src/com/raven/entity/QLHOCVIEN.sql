@@ -76,7 +76,7 @@ CREATE TABLE CauHoi (
 
 CREATE TABLE BaiLam (
     id NVARCHAR(10) PRIMARY KEY,
-	id_giang_vien NVARCHAR(10),
+    id_giang_vien NVARCHAR(10),
     id_bai_kt NVARCHAR(10),
     thoi_gian_nop DATETIME,
     ket_qua_json NVARCHAR(MAX),
@@ -136,6 +136,9 @@ INSERT INTO BaiLam VALUES
 INSERT INTO HocVien_xembai (id_hocvien, id_bailam) VALUES
 ('HV01', 'BL01'),
 ('HV02', 'BL02');
+
+
+SELECT * FROM NguoiDung WHERE ten_dang_nhap = 'admin';
 
 
 USE master;

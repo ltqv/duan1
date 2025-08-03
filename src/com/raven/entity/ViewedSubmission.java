@@ -2,16 +2,16 @@ package com.raven.entity;
 
 public class ViewedSubmission {
     private int id;
-    private String idHocVien;
-    private String idBaiLam;
+    private String id_hocvien;
+    private String id_bailam;
 
     public ViewedSubmission() {
     }
 
-    public ViewedSubmission(int id, String idHocVien, String idBaiLam) {
+    public ViewedSubmission(int id, String id_hocvien, String id_bailam) {
         this.id = id;
-        this.idHocVien = idHocVien;
-        this.idBaiLam = idBaiLam;
+        this.id_hocvien = id_hocvien;
+        this.id_bailam = id_bailam;
     }
 
     public int getId() {
@@ -22,21 +22,21 @@ public class ViewedSubmission {
         this.id = id;
     }
 
-    public String getIdHocVien() {
-        return idHocVien;
+    public String getId_hocvien() {
+        return id_hocvien;
     }
 
-    public void setIdHocVien(String idHocVien) {
-        this.idHocVien = idHocVien;
+    public void setId_hocvien(String id_hocvien) {
+        this.id_hocvien = id_hocvien;
     }
 
-    public String getIdBaiLam() {
-        return idBaiLam;
+    public String getId_bailam() {
+        return id_bailam;
     }
 
-    public void setIdBaiLam(String idBaiLam) {
-        this.idBaiLam = idBaiLam;
+    public void setId_bailam(String id_bailam) {
+        this.id_bailam = id_bailam;
     }
-    
+
     
 }

@@ -17,11 +17,11 @@ public class SubmissionDAOImpl implements SubmissionDAO{
     public Submission create(Submission entity) { 
         Object[] values = { 
             entity.getId(), 
-            entity.getIdGiangVien(),
-            entity.getIdBaiKT(),
-            entity.getThoiGianNop(),
-            entity.getKetQuaJson(),
-            entity.getSoCauDung()
+            entity.getId_giang_vien(),
+            entity.getId_bai_kt(),
+            entity.getThoi_gian_nop(),
+            entity.getKet_qua_json(),
+            entity.getSo_cau_dung()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -29,11 +29,11 @@ public class SubmissionDAOImpl implements SubmissionDAO{
     @Override 
     public void update(Submission entity) { 
         Object[] values = {  
-            entity.getIdGiangVien(),
-            entity.getIdBaiKT(),
-            entity.getThoiGianNop(),
-            entity.getKetQuaJson(),
-            entity.getSoCauDung(),
+            entity.getId_giang_vien(),
+            entity.getId_bai_kt(),
+            entity.getThoi_gian_nop(),
+            entity.getKet_qua_json(),
+            entity.getSo_cau_dung(),
             entity.getId()
         }; 
         XJdbc.executeUpdate(updateSql, values); 

@@ -17,14 +17,14 @@ public class QuestionDAOImpl implements QuestionDAO{
     public Question create(Question entity) { 
         Object[] values = { 
             entity.getId(), 
-            entity.getSoThuTu(),
-            entity.getIdBaiKT(),
-            entity.getNoiDung(),
-            entity.getDapAnA(),
-            entity.getDapAnB(),
-            entity.getDapAnC(),
-            entity.getDapAnD(),
-            entity.getDapAnDung()
+            entity.getSo_thu_tu(),
+            entity.getId_bai_kt(),
+            entity.getNoi_dung(),
+            entity.getDap_an_a(),
+            entity.getDap_an_b(),
+            entity.getDap_an_c(),
+            entity.getDap_an_d(),
+            entity.getDap_an_dung()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -32,14 +32,14 @@ public class QuestionDAOImpl implements QuestionDAO{
     @Override 
     public void update(Question entity) { 
         Object[] values = {  
-            entity.getSoThuTu(),
-            entity.getIdBaiKT(),
-            entity.getNoiDung(),
-            entity.getDapAnA(),
-            entity.getDapAnB(),
-            entity.getDapAnC(),
-            entity.getDapAnD(),
-            entity.getDapAnDung(),
+            entity.getSo_thu_tu(),
+            entity.getId_bai_kt(),
+            entity.getNoi_dung(),
+            entity.getDap_an_a(),
+            entity.getDap_an_b(),
+            entity.getDap_an_c(),
+            entity.getDap_an_d(),
+            entity.getDap_an_dung(),
             entity.getId()
         }; 
         XJdbc.executeUpdate(updateSql, values); 

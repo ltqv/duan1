@@ -17,8 +17,8 @@ public class CourseDAOImpl implements CourseDAO{
     public Course create(Course entity) { 
         Object[] values = { 
             entity.getId(), 
-            entity.getTenKhoaHoc(),
-            entity.getNgayTao()
+            entity.getTen_khoa_hoc(),
+            entity.getNgay_tao()
         }; 
         XJdbc.executeUpdate(createSql, values); 
         return entity; 
@@ -26,8 +26,8 @@ public class CourseDAOImpl implements CourseDAO{
     @Override 
     public void update(Course entity) { 
         Object[] values = {  
-            entity.getTenKhoaHoc(),
-            entity.getNgayTao(),
+            entity.getTen_khoa_hoc(),
+            entity.getNgay_tao(),
             entity.getId()
         }; 
         XJdbc.executeUpdate(updateSql, values); 

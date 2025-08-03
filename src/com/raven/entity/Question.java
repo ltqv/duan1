@@ -2,28 +2,28 @@ package com.raven.entity;
 
 public class Question {
     private String id;
-    private int soThuTu;
-    private String idBaiKT;
-    private String noiDung;
-    private String dapAnA;
-    private String dapAnB;
-    private String dapAnC;
-    private String dapAnD;
-    private String dapAnDung;
+    private int so_thu_tu;
+    private String id_bai_kt;
+    private String noi_dung;
+    private String dap_an_a;
+    private String dap_an_b;
+    private String dap_an_c;
+    private String dap_an_d;
+    private String dap_an_dung;
 
     public Question() {
     }
 
-    public Question(String id, int soThuTu, String idBaiKT, String noiDung, String dapAnA, String dapAnB, String dapAnC, String dapAnD, String dapAnDung) {
+    public Question(String id, int so_thu_tu, String id_bai_kt, String noi_dung, String dap_an_a, String dap_an_b, String dap_an_c, String dap_an_d, String dap_an_dung) {
         this.id = id;
-        this.soThuTu = soThuTu;
-        this.idBaiKT = idBaiKT;
-        this.noiDung = noiDung;
-        this.dapAnA = dapAnA;
-        this.dapAnB = dapAnB;
-        this.dapAnC = dapAnC;
-        this.dapAnD = dapAnD;
-        this.dapAnDung = dapAnDung;
+        this.so_thu_tu = so_thu_tu;
+        this.id_bai_kt = id_bai_kt;
+        this.noi_dung = noi_dung;
+        this.dap_an_a = dap_an_a;
+        this.dap_an_b = dap_an_b;
+        this.dap_an_c = dap_an_c;
+        this.dap_an_d = dap_an_d;
+        this.dap_an_dung = dap_an_dung;
     }
 
     public String getId() {
@@ -34,69 +34,69 @@ public class Question {
         this.id = id;
     }
 
-    public int getSoThuTu() {
-        return soThuTu;
+    public int getSo_thu_tu() {
+        return so_thu_tu;
     }
 
-    public void setSoThuTu(int soThuTu) {
-        this.soThuTu = soThuTu;
+    public void setSo_thu_tu(int so_thu_tu) {
+        this.so_thu_tu = so_thu_tu;
     }
 
-    public String getIdBaiKT() {
-        return idBaiKT;
+    public String getId_bai_kt() {
+        return id_bai_kt;
     }
 
-    public void setIdBaiKT(String idBaiKT) {
-        this.idBaiKT = idBaiKT;
+    public void setId_bai_kt(String id_bai_kt) {
+        this.id_bai_kt = id_bai_kt;
     }
 
-    public String getNoiDung() {
-        return noiDung;
+    public String getNoi_dung() {
+        return noi_dung;
     }
 
-    public void setNoiDung(String noiDung) {
-        this.noiDung = noiDung;
+    public void setNoi_dung(String noi_dung) {
+        this.noi_dung = noi_dung;
     }
 
-    public String getDapAnA() {
-        return dapAnA;
+    public String getDap_an_a() {
+        return dap_an_a;
     }
 
-    public void setDapAnA(String dapAnA) {
-        this.dapAnA = dapAnA;
+    public void setDap_an_a(String dap_an_a) {
+        this.dap_an_a = dap_an_a;
     }
 
-    public String getDapAnB() {
-        return dapAnB;
+    public String getDap_an_b() {
+        return dap_an_b;
     }
 
-    public void setDapAnB(String dapAnB) {
-        this.dapAnB = dapAnB;
+    public void setDap_an_b(String dap_an_b) {
+        this.dap_an_b = dap_an_b;
     }
 
-    public String getDapAnC() {
-        return dapAnC;
+    public String getDap_an_c() {
+        return dap_an_c;
     }
 
-    public void setDapAnC(String dapAnC) {
-        this.dapAnC = dapAnC;
+    public void setDap_an_c(String dap_an_c) {
+        this.dap_an_c = dap_an_c;
     }
 
-    public String getDapAnD() {
-        return dapAnD;
+    public String getDap_an_d() {
+        return dap_an_d;
     }
 
-    public void setDapAnD(String dapAnD) {
-        this.dapAnD = dapAnD;
+    public void setDap_an_d(String dap_an_d) {
+        this.dap_an_d = dap_an_d;
     }
 
-    public String getDapAnDung() {
-        return dapAnDung;
+    public String getDap_an_dung() {
+        return dap_an_dung;
     }
 
-    public void setDapAnDung(String dapAnDung) {
-        this.dapAnDung = dapAnDung;
+    public void setDap_an_dung(String dap_an_dung) {
+        this.dap_an_dung = dap_an_dung;
     }
-    
+
     
 }
