@@ -58,4 +58,3 @@ public class Security {
         return Paths.get(System.getProperty("user.dir")).resolve(FILE_NAME);
     }
 }
-

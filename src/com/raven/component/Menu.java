@@ -7,10 +7,14 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Window;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import login_form.Logins;
 
 public class Menu extends javax.swing.JPanel {
 
@@ -28,15 +32,40 @@ public class Menu extends javax.swing.JPanel {
         init();
     }
 
-    private void init() {
+       private void init() {
         listMenu1.addItem(new Model_Menu("tongquan", "Thông tin tổng quát", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("user", "Quản lý tài khoản", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("qlylophoc", "Quản lý lớp học", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("lichhoc", "Quản lý lịch học", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("thongke", "Thống kế & báo cáo", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("logout", "Logout", Model_Menu.MenuType.MENU));
-       
+        
+
+        
+      listMenu1.addEventMenuSelected(new EventMenuSelected() {
+    @Override
+public void selected(int index) {
+    System.out.println("Selected index: " + index); // in ra khi menu được click
+
+    if (index == 5) {
+        System.out.println("Bạn vừa chọn Logout"); // debug thêm
+
+        int result = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            new Logins().setVisible(true);
+            Window window = SwingUtilities.getWindowAncestor(listMenu1);
+            if (window != null) {
+                window.dispose();
+            }
+        }
     }
+}
+
+});
+
+       }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -1,5 +1,7 @@
 package login_form;
 
+import com.mycompany.main.student.MainStudent;
+import com.mycompany.main.teacher.MainTeacher;
 import com.raven.Controller.LoginController;
 import com.raven.DAO.UserDAO;
 import com.raven.DAOImpl.UserDAOImpl;
@@ -74,10 +76,10 @@ public class Logins extends javax.swing.JFrame implements LoginController {
             Main.main(new String[]{});
         } else if (XAuth.isGiangVien()) {
             XDialog.alert("Đăng nhập thành công (Giảng viên)");
-
+            MainTeacher.main(new String[]{});
         } else {
             XDialog.alert("Đăng nhập thành công (Học viên)");
-
+             MainStudent.main(new String[]{});
         }
         dispose();
     }
